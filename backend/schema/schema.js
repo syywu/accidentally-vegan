@@ -1,6 +1,6 @@
 import graphql from "graphql";
 
-const { GraphQLObjectType, GraphQLString } = graphql;
+const { GraphQLObjectType, GraphQLString, GraphQLSchema } = graphql;
 
 const ProductType = new GraphQLObjectType({
   name: "Product",
@@ -11,6 +11,7 @@ const ProductType = new GraphQLObjectType({
   }),
 });
 
+// how to get to data
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
@@ -22,4 +23,8 @@ const RootQuery = new GraphQLObjectType({
       },
     },
   },
+});
+
+export const rootQuerySchema = new GraphQLSchema({
+  query: RootQuery,
 });
