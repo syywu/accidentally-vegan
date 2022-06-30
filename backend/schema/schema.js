@@ -1,12 +1,24 @@
 import graphql from "graphql";
 import _ from "lodash";
 
-const { GraphQLObjectType, GraphQLString, GraphQLSchema } = graphql;
+const { GraphQLObjectType, GraphQLString, GraphQLSchema, GraphQLID } = graphql;
 
+const products = [
+  {
+    name: "chocolate",
+    type: "snack",
+    id: "1",
+  },
+  {
+    name: "biscoff",
+    type: "snack",
+    id: "2",
+  },
+];
 const ProductType = new GraphQLObjectType({
   name: "Product",
   fields: () => ({
-    id: { type: GraphQLString },
+    id: { type: GraphQLID },
     name: { type: GraphQLString },
     type: { type: GraphQLString },
   }),
@@ -18,10 +30,10 @@ const RootQuery = new GraphQLObjectType({
   fields: {
     product: {
       type: ProductType,
-      args: { id: { type: GraphQLString } },
+      args: { id: { type: GraphQLID } },
       resolve(parent, args) {
         // code to get data from db/other sources
-        return _.find(product, { id: args.id });
+        return _.find(products, { id: args.id });
       },
     },
   },
