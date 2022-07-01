@@ -1,7 +1,13 @@
 import graphql from "graphql";
 import _ from "lodash";
 
-const { GraphQLObjectType, GraphQLString, GraphQLSchema, GraphQLID } = graphql;
+const {
+  GraphQLObjectType,
+  GraphQLString,
+  GraphQLSchema,
+  GraphQLID,
+  GraphQLList,
+} = graphql;
 
 const products = [
   {
@@ -14,6 +20,12 @@ const products = [
     name: "biscoff",
     type: "snack",
     id: "2",
+    brandId: "2",
+  },
+  {
+    name: "biscoff spread",
+    type: "spreads",
+    id: "3",
     brandId: "2",
   },
 ];
@@ -52,6 +64,13 @@ const BrandType = new GraphQLObjectType({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
     country: { type: GraphQLString },
+    product: {
+      // returns a list
+      type: new GraphQLList(ProductType),
+      resolve(parent, args) {
+        return _.filter(products, { brandId: parent.id });
+      },
+    },
   }),
 });
 
