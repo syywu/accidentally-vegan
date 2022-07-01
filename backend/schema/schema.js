@@ -8,11 +8,13 @@ const products = [
     name: "Bournville",
     type: "snack",
     id: "1",
+    brandId: "1",
   },
   {
     name: "biscoff",
     type: "snack",
     id: "2",
+    brandId: "2",
   },
 ];
 
@@ -35,6 +37,12 @@ const ProductType = new GraphQLObjectType({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
     type: { type: GraphQLString },
+    brand: {
+      type: BrandType,
+      resolve(parent, args) {
+        return _.find(brands, { id: parent.brandId });
+      },
+    },
   }),
 });
 
@@ -54,9 +62,16 @@ const RootQuery = new GraphQLObjectType({
     product: {
       type: ProductType,
       args: { id: { type: GraphQLID } },
+      // resolve grabs data from db/other sources
       resolve(parent, args) {
-        // code to get data from db/other sources
         return _.find(products, { id: args.id });
+      },
+    },
+    brand: {
+      type: BrandType,
+      args: { id: { type: GraphQLID } },
+      resolve(parent, args) {
+        return _.find(brands, { id: args.id });
       },
     },
   },
