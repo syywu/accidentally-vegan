@@ -5,7 +5,7 @@ const { GraphQLObjectType, GraphQLString, GraphQLSchema, GraphQLID } = graphql;
 
 const products = [
   {
-    name: "chocolate",
+    name: "Bournville",
     type: "snack",
     id: "1",
   },
@@ -15,12 +15,35 @@ const products = [
     id: "2",
   },
 ];
+
+const brands = [
+  {
+    name: "Cadbury",
+    country: "UK",
+    id: "1",
+  },
+  {
+    name: "Lotus",
+    country: "UK",
+    id: "2",
+  },
+];
+
 const ProductType = new GraphQLObjectType({
   name: "Product",
   fields: () => ({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
     type: { type: GraphQLString },
+  }),
+});
+
+const BrandType = new GraphQLObjectType({
+  name: "Brand",
+  fields: () => ({
+    id: { type: GraphQLID },
+    name: { type: GraphQLString },
+    country: { type: GraphQLString },
   }),
 });
 
