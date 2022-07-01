@@ -93,6 +93,18 @@ const RootQuery = new GraphQLObjectType({
         return _.find(brands, { id: args.id });
       },
     },
+    products: {
+      type: new GraphQLList(ProductType),
+      resolve(parent, args) {
+        return products;
+      },
+    },
+    brands: {
+      type: new GraphQLList(BrandType),
+      resolve(parent, args) {
+        return brands;
+      },
+    },
   },
 });
 
