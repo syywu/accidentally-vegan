@@ -16,6 +16,7 @@ const ProductType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
+    image: { type: GraphQLString },
     type: { type: GraphQLString },
     brand: {
       type: BrandType,
@@ -92,6 +93,24 @@ const Mutation = new GraphQLObjectType({
           country: args.country,
         });
         return brand.save();
+      },
+    },
+    addProduct: {
+      type: ProductType,
+      args: {
+        name: { type: GraphQLString },
+        type: { type: GraphQLString },
+        image: { type: GraphQLString },
+        brandId: { type: GraphQLID },
+      },
+      resolve(parent, args) {
+        let product = new Product({
+          name: args.name,
+          type: args.type,
+          image: args.image,
+          brandId: args.brandId,
+        });
+        return product.save();
       },
     },
   },
