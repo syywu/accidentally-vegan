@@ -80,19 +80,19 @@ const RootQuery = new GraphQLObjectType({
 const Mutation = new GraphQLObjectType({
   name: "Mutation",
   fields: {
-    type: BrandType,
-    args: {
-      name: { type: GraphQLString },
-      country: { type: GraphQLString },
-    },
-    resolve(parent, args) {
-      // Brand is from model
-      let brand = new Brand({
-        name: args.name,
-        country: args.country,
-      });
-      //   saves to db
-      brand.save();
+    addBrand: {
+      type: BrandType,
+      args: {
+        name: { type: GraphQLString },
+        country: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        let brand = new Brand({
+          name: args.name,
+          country: args.country,
+        });
+        return brand.save();
+      },
     },
   },
 });
