@@ -1,5 +1,7 @@
 import graphql from "graphql";
 import _ from "lodash";
+import Product from "../models/products.js";
+import Brand from "../models/brands.js";
 
 const {
   GraphQLObjectType,
@@ -8,40 +10,6 @@ const {
   GraphQLID,
   GraphQLList,
 } = graphql;
-
-const products = [
-  {
-    name: "Bournville",
-    type: "snack",
-    id: "1",
-    brandId: "1",
-  },
-  {
-    name: "biscoff",
-    type: "snack",
-    id: "2",
-    brandId: "2",
-  },
-  {
-    name: "biscoff spread",
-    type: "spreads",
-    id: "3",
-    brandId: "2",
-  },
-];
-
-const brands = [
-  {
-    name: "Cadbury",
-    country: "UK",
-    id: "1",
-  },
-  {
-    name: "Lotus",
-    country: "UK",
-    id: "2",
-  },
-];
 
 const ProductType = new GraphQLObjectType({
   name: "Product",
@@ -52,7 +20,7 @@ const ProductType = new GraphQLObjectType({
     brand: {
       type: BrandType,
       resolve(parent, args) {
-        return _.find(brands, { id: parent.brandId });
+        // return _.find(brands, { id: parent.brandId });
       },
     },
   }),
@@ -68,7 +36,7 @@ const BrandType = new GraphQLObjectType({
       // returns a list
       type: new GraphQLList(ProductType),
       resolve(parent, args) {
-        return _.filter(products, { brandId: parent.id });
+        // return _.filter(products, { brandId: parent.id });
       },
     },
   }),
@@ -83,31 +51,53 @@ const RootQuery = new GraphQLObjectType({
       args: { id: { type: GraphQLID } },
       // resolve grabs data from db/other sources
       resolve(parent, args) {
-        return _.find(products, { id: args.id });
+        // return _.find(products, { id: args.id });
       },
     },
     brand: {
       type: BrandType,
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
-        return _.find(brands, { id: args.id });
+        // return _.find(brands, { id: args.id });
       },
     },
     products: {
       type: new GraphQLList(ProductType),
       resolve(parent, args) {
-        return products;
+        // return products;
       },
     },
     brands: {
       type: new GraphQLList(BrandType),
       resolve(parent, args) {
-        return brands;
+        // return brands;
       },
+    },
+  },
+});
+
+// allows you to add/ delete data
+const Mutation = new GraphQLObjectType({
+  name: "Mutation",
+  fields: {
+    type: BrandType,
+    args: {
+      name: { type: GraphQLString },
+      country: { type: GraphQLString },
+    },
+    resolve(parent, args) {
+      // Brand is from model
+      let brand = new Brand({
+        name: args.name,
+        country: args.country,
+      });
+      //   saves to db
+      brand.save();
     },
   },
 });
 
 export const rootQuerySchema = new GraphQLSchema({
   query: RootQuery,
+  mutation: Mutation,
 });
