@@ -1,9 +1,16 @@
 import express from "express";
 import { graphqlHTTP } from "express-graphql";
 import { rootQuerySchema } from "./schema/schema.js";
+import mongoose from "mongoose";
 
 const app = express();
 const PORT = 8000;
+
+mongoose.connect("mongodb://localhost:27017/accidentally-vegan");
+mongoose.connection.once("open", () => {
+  console.log("connected to db");
+});
+
 app.use(
   "/graphql",
   graphqlHTTP({
