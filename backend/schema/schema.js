@@ -22,6 +22,7 @@ const ProductType = new GraphQLObjectType({
       type: BrandType,
       resolve(parent, args) {
         // return _.find(brands, { id: parent.brandId });
+        return Brand.findById(parent.brandId);
       },
     },
   }),
@@ -38,6 +39,7 @@ const BrandType = new GraphQLObjectType({
       type: new GraphQLList(ProductType),
       resolve(parent, args) {
         // return _.filter(products, { brandId: parent.id });
+        return Product.find({ brandId: parent.id });
       },
     },
   }),
