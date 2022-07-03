@@ -9,6 +9,7 @@ const {
   GraphQLSchema,
   GraphQLID,
   GraphQLList,
+  GraphQLNonNull,
 } = graphql;
 
 const ProductType = new GraphQLObjectType({
@@ -70,6 +71,7 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLList(ProductType),
       resolve(parent, args) {
         // return products;
+        // {} will return all
         return Product.find({});
       },
     },
@@ -90,8 +92,8 @@ const Mutation = new GraphQLObjectType({
     addBrand: {
       type: BrandType,
       args: {
-        name: { type: GraphQLString },
-        country: { type: GraphQLString },
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        country: { type: new GraphQLNonNull(GraphQLString) },
       },
       resolve(parent, args) {
         let brand = new Brand({
@@ -104,10 +106,10 @@ const Mutation = new GraphQLObjectType({
     addProduct: {
       type: ProductType,
       args: {
-        name: { type: GraphQLString },
-        type: { type: GraphQLString },
-        image: { type: GraphQLString },
-        brandId: { type: GraphQLID },
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        type: { type: new GraphQLNonNull(GraphQLString) },
+        image: { type: new GraphQLNonNull(GraphQLString) },
+        brandId: { type: new GraphQLNonNull(GraphQLID) },
       },
       resolve(parent, args) {
         let product = new Product({
