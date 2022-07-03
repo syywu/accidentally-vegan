@@ -1,5 +1,5 @@
 import "./App.css";
-import Navbar from "./Navbar";
+import Navbar from "./components/Navbar";
 
 // root components- first thing to render
 function App() {
