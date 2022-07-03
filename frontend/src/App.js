@@ -1,22 +1,16 @@
 import "./App.css";
 import Navbar from "./components/Navbar";
 import ProductList from "./components/ProductList";
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  gql,
-} from "@apollo/client";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 // root components- first thing to render
 function App() {
   const client = new ApolloClient({
-    uri: "https://http://localhost:8000/graphql/",
+    uri: "http://localhost:8000/graphql/",
     cache: new InMemoryCache(),
   });
   return (
     <ApolloProvider client={client}>
-      // the div that's been injected to html
       <div className="App">
         {/* inject navbar into root route */}
         <Navbar />
