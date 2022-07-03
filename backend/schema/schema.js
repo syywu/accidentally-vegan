@@ -55,7 +55,7 @@ const RootQuery = new GraphQLObjectType({
       // resolve grabs data from db/other sources
       resolve(parent, args) {
         // return _.find(products, { id: args.id });
-        return Product.find(args.id);
+        return Product.findById(args.id);
       },
     },
     brand: {
@@ -63,19 +63,21 @@ const RootQuery = new GraphQLObjectType({
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
         // return _.find(brands, { id: args.id });
-        return Brand.find(args.id);
+        return Brand.findById(args.id);
       },
     },
     products: {
       type: new GraphQLList(ProductType),
       resolve(parent, args) {
         // return products;
+        return Product.find({});
       },
     },
     brands: {
       type: new GraphQLList(BrandType),
       resolve(parent, args) {
         // return brands;
+        return Brand.find({});
       },
     },
   },
