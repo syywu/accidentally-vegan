@@ -5,6 +5,7 @@ const getProductQuery = gql`
     products {
       name
       type
+      id
     }
   }
 `;
@@ -19,7 +20,7 @@ const ProductList = () => {
     <div className="product-list">
       <ul>
         {data.products.map((product) => {
-          <li key={product.id}>{product.name}</li>;
+          return <li key={product.id}>{product.name}</li>;
         })}
       </ul>
     </div>

@@ -15,9 +15,6 @@ function App() {
         {/* inject navbar into root route */}
         <Navbar />
         <ProductList />
-        <div className="content">
-          <h1>Accidentally Vegan</h1>
-        </div>
       </div>
     </ApolloProvider>
   );
