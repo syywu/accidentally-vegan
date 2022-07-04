@@ -13,19 +13,19 @@ const AddProduct = () => {
   return (
     <form id="add-product">
       <div className="field">
-        <label>product name:</label>
+        <label>Product Name:</label>
         <input type="text" />
       </div>
 
       <div className="field">
-        <label>product type:</label>
+        <label>Product Type:</label>
         <select>
           <option>Type</option>
         </select>
       </div>
 
       <div className="field">
-        <label>brand name:</label>
+        <label>Brand Name:</label>
         <input type="text" />
       </div>
 
