@@ -4,7 +4,7 @@ const getBrandQuery = gql`
   {
     brands {
       name
-      type
+      country
       id
     }
   }
