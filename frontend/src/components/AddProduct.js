@@ -25,9 +25,11 @@ const AddProduct = () => {
       </div>
 
       <div className="field">
-        <label>brand</label>
+        <label>brand name:</label>
         <input type="text" />
       </div>
+
+      <button>+</button>
     </form>
   );
 };
