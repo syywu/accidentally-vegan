@@ -29,6 +29,13 @@ const AddProduct = () => {
         <input type="text" />
       </div>
 
+      <div className="field">
+        <label>Country of Origin:</label>
+        <select>
+          <option>Country</option>
+        </select>
+      </div>
+
       <button>+</button>
     </form>
   );
