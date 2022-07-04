@@ -1,14 +1,5 @@
-import { gql, useQuery } from "@apollo/client";
-
-const getBrandQuery = gql`
-  {
-    brands {
-      name
-      country
-      id
-    }
-  }
-`;
+import { useQuery } from "@apollo/client";
+import { getBrandQuery } from "./queries/queries";
 
 const AddProduct = () => {
   const { loading, error, data } = useQuery(getBrandQuery);
