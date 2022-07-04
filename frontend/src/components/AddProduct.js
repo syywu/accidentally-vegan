@@ -1,8 +1,8 @@
 import { gql, useQuery } from "@apollo/client";
 
-const getProductQuery = gql`
+const getBrandQuery = gql`
   {
-    products {
+    brands {
       name
       type
       id

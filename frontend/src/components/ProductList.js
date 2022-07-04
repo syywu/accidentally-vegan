@@ -5,6 +5,7 @@ const getProductQuery = gql`
     products {
       name
       type
+      image
       id
     }
   }
@@ -18,11 +19,21 @@ const ProductList = () => {
 
   return (
     <div className="product-list">
-      <ul>
-        {data.products.map((product) => {
-          return <li key={product.id}>{product.name}</li>;
-        })}
-      </ul>
+      {data.products.map((product) => {
+        return (
+          <div>
+            <img
+              className="product-img"
+              src={product.image}
+              alt={product.name}
+              width="200"
+              height="200"
+            />
+            <p key={product.id}>{product.name}</p>
+            <p>{product.type}</p>
+          </div>
+        );
+      })}
     </div>
   );
 };
