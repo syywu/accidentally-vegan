@@ -33,6 +33,7 @@ const AddProduct = () => {
       variables: {
         name,
         type,
+        image,
         brandId,
       },
     });
@@ -70,6 +71,7 @@ const AddProduct = () => {
       <div className="field">
         <label>Brand Name:</label>
         <select value={brandId} onChange={(e) => setBrandId(e.target.value)}>
+          <option>Select brand</option>
           {getBrands()}
         </select>
       </div>
