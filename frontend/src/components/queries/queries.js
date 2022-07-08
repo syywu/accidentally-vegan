@@ -22,8 +22,8 @@ export const getBrandQuery = gql`
 `;
 
 export const addProductMutation = gql`
-  mutation {
-    addProduct(name: "", type: "", image: "", brandId: "") {
+  mutation ($name: String!, $type: String!, $image: String!, $brandId: ID!) {
+    addProduct(name: $name, type: $type, image: $image, brandId: $brandId) {
       name
       type
       image
