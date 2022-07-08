@@ -9,6 +9,7 @@ const AddProduct = () => {
   const [name, setName] = useState("");
   const [addProduct, { newData }] = useMutation(addProductMutation);
   const [type, setType] = useState("");
+  const [image, setImage] = useState("");
   const [brandId, setBrandId] = useState("");
   // const [country, setCountry] = useState("");
 
@@ -54,6 +55,15 @@ const AddProduct = () => {
           type="text"
           value={type}
           onChange={(e) => setType(e.target.value)}
+        />
+      </div>
+
+      <div className="field">
+        <label>Product Image URL:</label>
+        <input
+          type="text"
+          value={image}
+          onChange={(e) => setImage(e.target.value)}
         />
       </div>
 
