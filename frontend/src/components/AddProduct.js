@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client";
-import { getBrandQuery } from "./queries/queries";
+import { getBrandQuery, addProductMutation } from "./queries/queries";
 import { useState } from "react";
+import { flowRight as compose } from "lodash";
 
 const AddProduct = () => {
   const { loading, error, data } = useQuery(getBrandQuery);
