@@ -1,7 +1,10 @@
 import { useQuery, useMutation } from "@apollo/client";
-import { getBrandQuery, addProductMutation } from "./queries/queries";
+import {
+  getBrandQuery,
+  addProductMutation,
+  getProductQuery,
+} from "./queries/queries";
 import { useState } from "react";
-import { flowRight as compose } from "lodash";
 
 const AddProduct = () => {
   const { loading, error, data } = useQuery(getBrandQuery);
@@ -36,6 +39,7 @@ const AddProduct = () => {
         image,
         brandId,
       },
+      refetchQueries: [{ query: getProductQuery }],
     });
   }
 
