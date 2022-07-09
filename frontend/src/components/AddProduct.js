@@ -2,7 +2,7 @@ import { useQuery, useMutation } from "@apollo/client";
 import {
   getBrandQuery,
   addProductMutation,
-  getProductQuery,
+  getProductsQuery,
 } from "./queries/queries";
 import { useState } from "react";
 
@@ -10,7 +10,7 @@ const AddProduct = () => {
   const { loading, error, data } = useQuery(getBrandQuery);
 
   const [name, setName] = useState("");
-  const [addProduct, { newData }] = useMutation(addProductMutation);
+  const [addProduct] = useMutation(addProductMutation);
   const [type, setType] = useState("");
   const [image, setImage] = useState("");
   const [brandId, setBrandId] = useState("");
@@ -39,7 +39,7 @@ const AddProduct = () => {
         image,
         brandId,
       },
-      refetchQueries: [{ query: getProductQuery }],
+      refetchQueries: [{ query: getProductsQuery }],
     });
   }
 

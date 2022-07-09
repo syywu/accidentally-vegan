@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
-export const getProductQuery = gql`
-  query GetProduct {
+export const getProductsQuery = gql`
+  query GetProducts {
     products {
       name
       type
@@ -32,20 +32,19 @@ export const addProductMutation = gql`
   }
 `;
 
-export const addProductQuery = gql`
-  query ($id: ID) {
+export const getProductQuery = gql`
+  query GetProduct($id: ID) {
     product(id: $id) {
+      id
       name
       type
-      image
-      brandId
       brand {
         name
         country
         products {
-          id
           name
           type
+          image
         }
       }
     }

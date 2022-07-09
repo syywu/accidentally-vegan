@@ -1,17 +1,33 @@
 import { useQuery } from "@apollo/client";
 import { getProductQuery } from "./queries/queries";
 
-const ProductDetail = () => {
-  const { loading, data, error } = useQuery(getProductQuery);
+const ProductDetails = ({ productId }) => {
+  const { loading, data } = useQuery(getProductQuery, {
+    variables: { id: productId },
+  });
   if (loading) return <p>Loading..</p>;
-  if (error) return <p>error</p>;
   console.log(data);
-
   return (
-    <div className="product-details">
-      <p>Prodcut Details</p>
+    <div>
+      <h2>{data.product.name}</h2>
+      <p>{data.product.type}</p>
+      <p>{data.product.brand.name}</p>
+      <p>{data.product.brand.country}</p>
+      <h3>Other products by this brand</h3>
+      <ul className="other-products">
+        {data.product.brand.products.map((item) => {
+          return (
+            <>
+              <p key={item.id}>{item.name}</p>
+              <img src={item.image} alt={item.name} width="50" height="50" />
+            </>
+          );
+        })}
+      </ul>
     </div>
   );
 };
 
-export default ProductDetail;
+//   return <div className="product-details">{display}</div>;
+
+export default ProductDetails;
