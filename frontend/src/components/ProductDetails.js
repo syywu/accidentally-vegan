@@ -6,9 +6,8 @@ const ProductDetails = ({ productId }) => {
     variables: { id: productId },
   });
   if (loading) return <p>Loading..</p>;
-  console.log(data);
   return (
-    <div>
+    <div className="details">
       <h2>{data.product.name}</h2>
       <p>{data.product.type}</p>
       <p>{data.product.brand.name}</p>
@@ -19,7 +18,7 @@ const ProductDetails = ({ productId }) => {
           return (
             <>
               <p key={item.id}>{item.name}</p>
-              <img src={item.image} alt={item.name} width="50" height="50" />
+              <img src={item.image} alt={item.name} width="75" height="75" />
             </>
           );
         })}
