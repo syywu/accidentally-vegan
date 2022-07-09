@@ -31,3 +31,23 @@ export const addProductMutation = gql`
     }
   }
 `;
+
+export const addBookQuery = gql`
+  query ($id: ID) {
+    product(id: $id) {
+      name
+      type
+      image
+      brandId
+      brand {
+        name
+        country
+        products {
+          id
+          name
+          type
+        }
+      }
+    }
+  }
+`;
