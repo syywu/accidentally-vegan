@@ -35,7 +35,7 @@ const BrandType = new GraphQLObjectType({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
     country: { type: GraphQLString },
-    product: {
+    products: {
       // returns a list
       type: new GraphQLList(ProductType),
       resolve(parent, args) {
