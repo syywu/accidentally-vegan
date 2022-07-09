@@ -1,5 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { getProductQuery } from "./queries/queries";
+import ProductDetail from "./ProductDetails";
 
 const ProductList = () => {
   const { loading, data, error } = useQuery(getProductQuery);
@@ -24,6 +25,7 @@ const ProductList = () => {
           </div>
         );
       })}
+      <ProductDetail />
     </div>
   );
 };

@@ -32,7 +32,7 @@ export const addProductMutation = gql`
   }
 `;
 
-export const addBookQuery = gql`
+export const addProductQuery = gql`
   query ($id: ID) {
     product(id: $id) {
       name
